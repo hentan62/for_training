@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        input{
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+    <body>
+       <input type="text" value="К-1" id="name_products">название изделия<br>
+       <input type="text" value="ЗД-1"  id="name_item">название ЗД<br>
+       <input type="text" value="5"  id="how_much_items">количество ЗД<br>
+       <input id="submit" type="button" value="Ввести ЗД">
+        <script>
+            let items = () =>{
+            let NameKolumn = document.getElementById("name_products").value;
+            let NameZD = document.getElementById("name_item").value;
+            let HowManyZD = +(document.getElementById("how_much_items")).value;
+            return [NameKolumn, NameZD, HowManyZD ]
+            }
+            
+            let database = 
+        [['ЗД4',{'ф20АIII':19.8,'пластина 16':342.9}],
+       ['ЗД5',{'ф20АIII':16.2,'пластина 16':53.1}]
+            ]
+            let findItem = () => {
+                let NameZD = items()[1];
+                let HowManyZD = items()[2];
+                for (keys of database) {
+                    if (keys[0]==NameZD){
+                        console.log(keys[0])
+                        return keys[1]
+                    }
+                    
+                    else{
+                        console.log("Закладная не найдена")
+                    }
+                }
+            }
+            
+            window.onload = () =>{
+                let fullObject = {}
+            let button = document.getElementById("submit");
+           button.onclick = () =>{
+                findItem()
+            }}
+
+        </script>
+    </body>
+</html>
