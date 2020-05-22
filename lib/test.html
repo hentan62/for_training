@@ -15,7 +15,9 @@
        <input type="text" value="ЗД-1"  id="name_item">название ЗД<br>
        <input type="text" value="5"  id="how_much_items">количество ЗД<br>
        <input id="submit" type="button" value="Ввести ЗД">
+
         <script>
+            'use strict'
             let items = () =>{
             let NameKolumn = document.getElementById("name_products").value;
             let NameZD = document.getElementById("name_item").value;
@@ -27,17 +29,13 @@
         [['ЗД4',{'ф20АIII':19.8,'пластина 16':342.9}],
        ['ЗД5',{'ф20АIII':16.2,'пластина 16':53.1}]
             ]
+
             let findItem = () => {
                 let NameZD = items()[1];
                 let HowManyZD = items()[2];
-                for (keys of database) {
+                for (let keys of database) {
                     if (keys[0]==NameZD){
-                        console.log(keys[0])
-                        return keys[1]
-                    }
-                    
-                    else{
-                        console.log("Закладная не найдена")
+                        return [keys[0], keys[1]]
                     }
                 }
             }
@@ -46,8 +44,20 @@
                 let fullObject = {}
             let button = document.getElementById("submit");
            button.onclick = () =>{
-                findItem()
-            }}
+                let obj = findItem()[1];
+                
+                for (let key in obj){
+                    if (key in fullObject){
+                        fullObject[key]+=obj[key];
+                    }
+                    else {
+                        fullObject[key]=obj[key];
+                    }   
+                }
+                console.log(fullObject);
+                }
+                
+            }
 
         </script>
     </body>
