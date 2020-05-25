@@ -41,6 +41,17 @@
                     }
                 }
             }
+
+            let result = (fullObject) => {
+                let result = document.getElementById("result");
+                let writeRes = "<p>Масса закладных:</p>"
+                for (let key in fullObject) {
+                    writeRes += "<p>"+ key + " весом " + (fullObject[key]).toFixed(2) + " кг</p>";
+
+                }
+                result.innerHTML = writeRes;
+            }
+
             
             window.onload = () =>{
                 let fullObject = {}
@@ -49,19 +60,21 @@
                let NameZD = findItem()[0];
                 let obj = findItem()[1];
                 let output = document.getElementById("createInput");
-                let writeNameZD = "<p>Добавлена закладная деталь " + NameZD + "</p>";
+                let writeNameZD = "<p>" + NameZD + " в количестве " + items()[2] +"шт.</p>";
                 output.innerHTML += writeNameZD
 
                 for (let key in obj){
                     if (key in fullObject){
-                        fullObject[key]+=obj[key];
+                        fullObject[key]+=obj[key]*items()[2];
                     }
                     else {
-                        fullObject[key]=obj[key];
+                        fullObject[key]=obj[key]*items()[2];
                     }   
                 }
+
+                result(fullObject);
                 }
-                let result = document.getElementById("result")
+                
                 // надо сделать вывод результата
                 // и умножить на количество закладных
 
