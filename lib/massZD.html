@@ -4,10 +4,24 @@
     <meta charset="UTF-8">
     <title>Document</title>
     <style>
+
         input{
             margin-bottom: 10px;
             font-size: 16px;
         }
+
+        table{
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+
+        td{
+            border: 1px solid black;
+            border-collapse: collapse;
+            margin: 5px;
+            text-align: center;
+        }
+
     </style>
 </head>
     <body>
@@ -55,7 +69,8 @@
 
             let result = (fullObject) => {
                 let result = document.getElementById("result");
-                let writeRes = "<p>Масса закладных:</p>"
+                let writeRes = "<table><tr><td colspan='2'>Масса закладных:</td></tr>";
+                writeRes+="<tr><td>Название детали</td><td>Масса детали</td></tr>";
                 let arrOfKeys = [];
                 for (let k in fullObject){
                     if (fullObject.hasOwnProperty(k))
@@ -64,7 +79,7 @@
                 arrOfKeys.sort();
                 for (let i=0;i<arrOfKeys.length;i++ ) {
                     let kf=arrOfKeys[i]
-                    writeRes += "<p>"+ kf + " весом " + (fullObject[kf]).toFixed(2) + " кг</p>";
+                    writeRes += "<tr><td>"+ kf + "</td><td>" + (fullObject[kf]).toFixed(2) + "</td></tr>";
                 }
                 result.innerHTML = writeRes;
             }
