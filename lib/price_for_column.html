@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        p{margin-top: 1rem;}
+        input{text-align: center; border: 1px solid green;}
+        select{border: 1px solid green;}
+    </style>
+</head>
+<body>
+
+    <form name>
+        <select name="namezd" id="zd">
+            <option value="820" selected="selected">HPM/p 24</option>
+            <option value="1309">HPM/p 30</option>
+            <option value="2834">HPKM 30</option>
+            <option value="1000">HTA 250</option>
+            <option value="465">WAL 30x450</option>
+            <option value="108">WAL 16x215</option>
+        </select>
+    </form>
+
+    <p><input id="Number" type="text" value="1"> Введите количество закладных деталей</p>
+    <p><input id="submit" type="button" value="Посчитать цену"></p>
+    <p id="output">Нажмите посчитать цену</p>
+    
+    <script>
+
+        function priceForOne()
+        {
+            let selind = document.getElementById("zd").options.selectedIndex;
+            let width= document.getElementById("zd").options[selind].value;
+            return width;
+        }
+
+        function priceForAll()
+        {
+            let Number = (document.getElementById('Number')).value
+            let fullPrice = priceForOne()*Number
+            return fullPrice
+        }
+
+        function output(summ)
+        {
+            let output1 = "<p> Полная стоимость=" + summ + 'рублей</p>';
+            let output = document.getElementById ("output");
+            output.innerHTML = output1;
+        }
+
+        window.onload = function() {
+            let summ = 0;
+            let button = document.getElementById('submit');
+            button.onclick = function() {
+                summ += priceForAll();
+                output(summ)
+                
+            }
+        }
+
+
+    </script>
+</body>
+</html>
