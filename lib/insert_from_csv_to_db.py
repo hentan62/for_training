@@ -27,7 +27,7 @@ def create_connection(host_name, user_name, user_password, db_name, auth_plugin)
 
     return connection
 
-connection = create_connection("localhost", "root", "password",
+connection = create_connection("localhost", "admin_here", "password_here",
                                "for_pik",'mysql_native_password')
 
 
