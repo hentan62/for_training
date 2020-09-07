@@ -57,7 +57,7 @@ def single_block():
     for_block (pos, name_block, length, width, height, quantity, v, v_full)
     VALUES
     """
-
+    #подготовка данных для запроса
     for k in sorted(nblock.keys()):
         print(re.findall('\d+', k))
         digit = re.findall('\d+', k)[0]
@@ -72,6 +72,7 @@ def single_block():
         v1 = round(length * width * h1 / 10 ** 9, 2)
         vtotal = round(nblock[k] * v1, 2)
         n += 1
+        #формирование строки для SQL-запроса
         string = ("('" + str(k) + "'," + "'" + str(name) + "'," +
                 str(length) + "," + "" + str(width) + "," + str(h1) + "," +
                 str(nblock[k]) + "," + "'"
