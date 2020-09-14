@@ -42,7 +42,6 @@ def selector(connection, name_one, name_two, number_floor):
                f"or name_item like '{name_two}%') " \
                "group by name_item;"
     users = execute_read_query(connection, selector)
-    print(users)
     for user in users:
         print(user[0], user[1])
 
