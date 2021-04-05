@@ -8,7 +8,7 @@ needed_rows = ['vvod.txt', 'vvod.txt']  # сюда вводим название
 def row_block(input_rows):
     # считалка блоков из txt файла
     def sch(input_data):
-        f = open(input_data, 'r')
+        f = open(input_data, 'r', encoding="utf-8")
         a = {}
         for line in f:
             n = line.rstrip()
