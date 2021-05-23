@@ -1,18 +1,34 @@
 from django.shortcuts import render
-from django.http import HttpResponse, HttpResponseNotFound
+from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
 
+monthly_challenges = {
+    'january': 'first challenge',
+    'february': 'second challenge',
+    'march': 'third challenge',
+    'april': 'fourth  challenge',
+    'may': 'fifth challenge',
+    'june': 'sixth challenge',
+    'july': 'seventh challenge',
+    'august': 'eighth challenge',
+    'september': 'ninth challenge',
+    'october': 'tenth challenge',
+    'november': 'eleventh challenge',
+    'december': 'twelfth challenge'
+}
 
-monthly_cha
 
 def monfly_challenge_by_number(request, month):
-    return HttpResponse(month)
+    months = list(monthly_challenges.keys())
+    if month > len(months):
+        return HttpResponseNotFound("Invalid month!")
+    else:
+        redirect_month = months[month - 1]
+        return HttpResponseRedirect(redirect_month)
+
 
 def monfly_challenge(request, month):
-    challenge_text = None
-    if month == "january":
-        challenge_text = 'hello world!'
-    elif month == "february":
-        challenge_text = 'This is February'
-    else:
-        return HttpResponseNotFound("Месяц не найден")
-    return  HttpResponse(challenge_text)
+    try:
+        challenge_text = monthly_challenges[month]
+        return HttpResponse(challenge_text)
+    except:
+        return HttpResponseNotFound("Where is month???")
