@@ -43,4 +43,7 @@ def creater_pd(data):
 df = pd.DataFrame(name)
 for item in arr_of_data:
     df = pd.concat([df, creater_pd(item)], ignore_index=True, axis=1)
-df.to_excel('farm.xls')
+try:
+    df.to_excel('farm.xls')
+except:
+    print("закрой файл эксель!!!!")
